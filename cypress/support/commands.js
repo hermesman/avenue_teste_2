@@ -42,7 +42,7 @@ Cypress.Commands.add('preencherNovoUsuarioCadastro', () => {
     const user = {
         name: faker.name.fullName(),
         email: faker.internet.email(),
-        password: faker. internet.password()
+        password: faker.internet.password()
       }
 
     cy.get(loc.CADASTRO.BOTAO_CONTAS).click()
@@ -53,4 +53,98 @@ Cypress.Commands.add('preencherNovoUsuarioCadastro', () => {
     cy.get(loc.CADASTRO.CAMPO_EMAIL).type(user.email)
     cy.get(loc.CADASTRO.CAMPO_SENHA).type(user.password)
     cy.get(loc.CADASTRO.CAMPO_SENHA_VALIDACAO).type(user.password)
+})
+
+Cypress.Commands.add("buscaPorNomeCidade", (query) => {
+    cy.request({
+        url: Cypress.env('url_API'),
+        qs: {
+            q: query,
+            units: "metric",
+            appid: Cypress.env('API_Key_Weather')
+        }
+    })
+})
+
+Cypress.Commands.add("buscaPorNomeCidadeInvalida", (query) => {
+    cy.request({
+        url: Cypress.env('url_API'),
+        qs: {
+            q: query,
+            units: "metric",
+            appid: Cypress.env('API_Key_Weather')
+        },
+        failOnStatusCode: false
+    })
+})
+
+Cypress.Commands.add("buscaPorNomeCidadeAppIdInvalido", (query) => {
+    cy.request({
+        url: Cypress.env('url_API'),
+        qs: {
+            q: query,
+            units: "metric",
+            appid: null
+        },
+        failOnStatusCode: false
+    })
+})
+
+Cypress.Commands.add("buscaPorNomeCidadeInexistente", (query) => {
+    cy.request({
+        url: Cypress.env('url_API'),
+        qs: {
+            q: "Cidade Inexistente",
+            units: "metric",
+            appid: Cypress.env('API_Key_Weather')
+        },
+        failOnStatusCode: false
+    })
+})
+
+Cypress.Commands.add("buscaPorID", (id) => {
+    cy.request({
+        url: Cypress.env('url_API'),
+        qs: {
+            id: id,
+            units: "metric",
+            appid: Cypress.env('API_Key_Weather')
+        }
+    })
+})
+
+Cypress.Commands.add("buscaPorIDInvalida", (id) => {
+    cy.request({
+        url: Cypress.env('url_API'),
+        qs: {
+            id: id,
+            units: "metric",
+            appid: Cypress.env('API_Key_Weather')
+        },
+        failOnStatusCode: false
+    })
+})
+
+Cypress.Commands.add("buscaPorApiKeyInvalida", (id) => {
+    cy.request({
+        url: Cypress.env('url_API'),
+        qs: {
+            id: id,
+            units: "metric",
+            appid: null
+        },
+        failOnStatusCode: false
+    })
+})
+
+Cypress.Commands.add("buscaPorIDInexistente", (id) => {
+    cy.request({
+        url: Cypress.env('url_API'),
+        qs: {
+            id: '999999999999999',
+            units: "metric",
+            appid: Cypress.env('API_Key_Weather')
+        },
+        failOnStatusCode: false
+    })
 })
