@@ -8,12 +8,15 @@ module.exports = defineConfig({
     viewportHeight: 900,
     chromeWebSecurity: false,
     downloadsFolder: 'cypress/downloads',
+    trashAssetsBeforeRuns: true,
     retries:{
       runMode: 2,
       openMode: 2,
     },
     setupNodeEvents(on, config) {
       // implement node event listeners here
+      require('@cypress/grep/src/plugin')(config);
+      return config
     },
 
   },

@@ -5,7 +5,7 @@ import { formatCityName } from "../helpers/formatCityName"
 describe('Teste de Automacao API', () => {
     let cidades = require("../fixtures/cidadesData.json")
 
-    context('Suite 1 - Busca por ID', () => {
+    context('Suite 1 - Busca por ID',{ tags: '@api_id'}, () => {
 
         it("Deve retornar Status Code 200", () => {
             for (let i = 0; i < cidades.length; i++) {
@@ -71,7 +71,7 @@ describe('Teste de Automacao API', () => {
         })
     })
 
-    context('Suite 2 - Busca por Nome de Cidade', () => {
+    context('Suite 2 - Busca por Nome de Cidade',{ tags: '@api_name'}, () => {
 
         it("Deve retornar Status Code 200", () => {
             for (let i = 0; i < cidades.length; i++) {
@@ -81,7 +81,7 @@ describe('Teste de Automacao API', () => {
             }
         })
 
-        it("Deve retornar o ID e o Name correto", () => {
+        it("Deve retornar o ID e o Nome correto", () => {
             for (let i = 0; i < cidades.length; i++) {
                 cy.buscaPorNomeCidade(cidades[i].name).then((response) => {
                     expect(response.body.id).to.eql(cidades[i].id);

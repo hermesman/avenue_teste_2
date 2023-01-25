@@ -5,7 +5,7 @@ describe('Teste de Automacao UI', () => {
   beforeEach(() => {
     cy.login()
   })
-  context('Suite 1 - Carrinho de Compras', () => {
+  context('Suite 1 - Carrinho de Compras',{ tags: '@ui'}, () => {
     
     it('Cenario 1', () => {
       cy.inclusaoUnicoProdutoCarrinho()
@@ -16,7 +16,7 @@ describe('Teste de Automacao UI', () => {
     })
   })
 
-  context('Suite 2 - Cadastro', () => {
+  context('Suite 2 - Cadastro',{ tags: '@ui'}, () => {
     it('Cenario 1', () => {
       cy.preencherNovoUsuarioCadastro()
     })

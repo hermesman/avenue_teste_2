@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "cy:open": "npx cypress open",
-    "cy:run": "npx cypress run"
+    "cy:run": "npx cypress run --browser chrome",
+    "cy:run:ui": "npx cypress run --browser chrome --env grepTags=@ui",
+    "cy:run:api_id": "npx cypress run --browser chrome --env grepTags=@api_id",
+    "cy:run:api_name": "npx cypress run --browser chrome --env grepTags=@api_name"
   },
   "repository": {
     "type": "git",
@@ -20,5 +23,8 @@
   "dependencies": {
     "@faker-js/faker": "^7.6.0",
     "cypress": "^12.4.0"
+  },
+  "devDependencies": {
+    "@cypress/grep": "^3.1.3"
   }
 }
