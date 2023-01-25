@@ -1,0 +1,13 @@
+name: CI on Chrome - Only @api_name
+on: [push]
+jobs:
+  cypress-run:
+    runs-on: ubuntu-22.04
+    # let's make sure our tests pass on Chrome browser
+    name: Api Test on Chrome
+    steps:
+      - uses: actions/checkout@v3
+      - uses: cypress-io/github-action@v5
+        with:
+          browser: chrome
+          env: grepTags=@api_name
